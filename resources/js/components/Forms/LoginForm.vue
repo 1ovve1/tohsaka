@@ -17,7 +17,7 @@
 							</div>
 							<div class="col-12">
 								<div class="d-flex justify-content-center mt-3">
-									<button type="submit" :disabled="processing" @click="login" class="btn btn-primary" v-text="processing ? 'Please wait' : 'Login'"></button>
+									<button type="submit" :disabled="processing" @click="signIn" class="btn btn-danger" v-text="processing ? 'Please wait' : 'Login'"></button>
 								</div>
 							</div>
 						</form>
@@ -49,8 +49,10 @@
                 this.processing = true;
                 await axios.get('/sanctum/csrf-cookie');
                 await axios.post('/api/login', this.auth)
-                    .then(({data}) => {
-                        this.login();
+                    .then(async ({data}) => {
+                        await this.login();
+
+                        this.$router.push({ name: 'home' });
                     }).catch(({response: {data}}) => {
                         alert(data.message);
                     }).finally(() => {

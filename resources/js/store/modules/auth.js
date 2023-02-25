@@ -8,6 +8,8 @@ const getters = {
     isNotAuth: (state) => !state.auth_status,
 
     user: (state) => state.user,
+    getUserName: (state) => state.user.name,
+    getUserId: (state) => state.user.id
 };
 
 const mutations = {
@@ -16,9 +18,9 @@ const mutations = {
 };
 
 const actions = {
-    login: ({ commit }) => {
-        axios.get('api/user')
-            .then( ({ data }) => {
+    login: async ({ commit }) => {
+        await axios.get('api/user')
+            .then(({ data }) => {
                 commit('SET_USER_INSTANCE', data);
                 commit('SET_AUTH_STATUS', true);
             }).catch( ({ response: { data } }) => {

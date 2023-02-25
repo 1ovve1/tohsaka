@@ -25,7 +25,7 @@
 							</div>
 							<div class="col-12">
 								<div class="d-flex justify-content-center mt-3">
-									<button type="submit" :disabled="processing" @click="register" class="btn btn-primary" v-text="processing ? 'Please wait' : 'Register'"></button>
+									<button type="submit" :disabled="processing" @click="register" class="btn btn-danger" v-text="processing ? 'Please wait' : 'Register'"></button>
 								</div>
 							</div>
 						</form>
@@ -39,7 +39,6 @@
     import {mapActions} from 'vuex';
 
     export default {
-		name: 'register',
 		data() {
 			return {
 				user: {
@@ -60,10 +59,11 @@
 				this.processing = true;
 				await axios.get('/sanctum/csrf-cookie')
 				await axios.post('/api/register', this.user)
-					.then(response => {
-						this.login();
+					.then(async response => {
+						await this.login();
+
+                        this.$router.push({ name: 'home' });
 					}).catch((message) => {
-                        console.log(message);
 						alert(data.message);
 					}).finally(() => {
 						this.processing = false;
