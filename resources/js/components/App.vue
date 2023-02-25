@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Auth />
         Channel status:
         <p>
             {{ (channel.instance) ? 'true': 'false'}}
@@ -17,7 +18,13 @@
 </template>
 
 <script>
+import Auth from './Auth/Auth.vue';
+
 export default {
+    components: {
+        Auth
+    },
+
     data: () => ({
         channel: {
             instance: null,

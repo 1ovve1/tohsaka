@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tohsaka Project</title>
 
-    @vite('resources/css/app.css')
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
-    <div id="app"></div>
-
-    @vite('resources/js/app.js')
+    <div class="container">
+        <div id="app"></div>
+    </div>
 </body>
 </html>
