@@ -1,40 +1,30 @@
 <template>
     <div>
-        <div v-if="isThatMe">
-            <div class="d-flex align-items-center text-right justify-content-end ">
-                <div class="pr-2"> <span class="name">{{ title }}</span>
-                    <p class="msg">{{ message }}</p>
-                </div>
+        <div :class="makeMyMessageSpecial()">
+            <div class="pr-2">
+                <span class="name">{{ getName() }}</span>
+                <div class="msg">{{ body }}</div>
             </div>
         </div>
-        <div v-else>
-            <div class="d-flex align-items-center">
-                <div class="pr-2"> <span class="name">{{ title }}</span>
-                    <p class="msg">{{ message }}</p>
-                </div>
-            </div>
-        </div>
-
     </div>
 </template>
 
 <script>
-    import { mapGetters } from 'vuex';
-
     export default {
         props: {
             title: String,
-            message: String,
-            userId: Number,
+            body: String,
+            is_that_me: Boolean,
+            combination: Boolean,
         },
 
-        computed: {
-            ...mapGetters({
-                myUserId: 'auth/getUserId'
-            }),
+        methods: {
+            getName() {
+                return this.combination ? '': this.title;
+            },
 
-            isThatMe() {
-                return this.userId === myUserId;
+            makeMyMessageSpecial() {
+                return this.is_that_me ? 'd-flex align-items-center text-right justify-content-end': 'd-flex align-items-center';
             }
         }
     }

@@ -27,15 +27,5 @@
 
             }
         },
-
-        created() {
-            this.channel.instance = Echo.channel('public.cinema.1');
-
-            this.channel.instance.subscribed(() => {
-                console.log('Succsesfull!!');
-            }).listen('.cinema', (event) => {
-                console.log(event);
-            });
-        },
     }
 </script>
