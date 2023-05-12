@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\ChatMessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +12,4 @@ use App\Http\Controllers\Api\ChatMessageController;
 |
 */
 
-Auth::routes();
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::prefix('chat')
-    // ->middleware(['auth:sanctum'])
-    ->group(function () {
-    Route::apiResource('message', ChatMessageController::class);
-});
+require __DIR__ . "/Api/v1.php";
