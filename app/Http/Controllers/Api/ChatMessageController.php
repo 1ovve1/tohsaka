@@ -42,7 +42,7 @@ class ChatMessageController extends Controller
      */
     public function show(ChatMessage $chatMessage)
     {
-        return new ChatMessageResource($chatMessage);
+        //
     }
 
     /**
